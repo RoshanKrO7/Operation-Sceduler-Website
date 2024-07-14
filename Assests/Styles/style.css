@@ -1,0 +1,107 @@
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    align-content: center;
+    align-items: center;
+    background-image:url(https://img.freepik.com/free-photo/young-handsome-physician-medical-robe-with-stethoscope_1303-17818.jpg?w=740&t=st=1720958854~exp=1720959454~hmac=666897efa6715fc1537333cdf16484745b38b6a60081d8b1ce2f4496f1b863f0);
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+img{
+    position: relative;
+    height: 100px;
+    top: 8px;
+}
+header {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 20px 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+main {
+    padding: 50px;
+}
+
+footer {
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+h2 {
+    margin-bottom: 0px;
+    opacity: 1.0;
+    color: #000000;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+#button1,#button2,#button3 {
+    
+    background-color: #4CAF50;
+    border: 0;
+    border-radius: 10%;
+    color: #fff;
+    padding:10px 20px;
+    font-weight: bold;
+}   
+
+#button1:hover, #button2:hover, #button3:hover{
+    background-color: #32ced3;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, select {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+
+
+.logout-btn {
+    float: right;
+    margin-top: -50px;
+}
+
+/* Specific styles for the role selection page */
+#role-section {
+    width: 40rem;
+    padding: 50px;
+}
+
+#role-section button {
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 15px;
+}
+
+.hidden {
+    display: none;
+}
+div.col-8 h2, label, div.container h2,form.form-control {
+    color: #ffffff;
+}
+div.container, input.form-control{
+    background-color: rgba(0,0,0,.4);
+}
+
+
