@@ -16,9 +16,7 @@
             <div class="col-8"><h1>Appolo Hospital Operation Scheduler</h1></div>
         </div>
     </div>  
-        
     </header>
-    </div>
     <main>
         <center><div id="role-section" class="blurrybox">
         <div class="container card ">
@@ -31,26 +29,44 @@
             <div class="col-6">
             <button id="button1" onclick="selectRole('user')">User</button></div>
         </div></div></div></center>
-        <center>
-        <div id="login-section" class="hidden">
-            <div class="container card">
-            <h2>Login</h2>
-            <form id="login-form">
-                <div class="row justify-content-center">
-                <div class="col-2">
-                <label class="form-label" for="email">Email:</label></div>
-                <div class="col-6">
-                <input class="form-control" type="email" id="email" required></div></div><br>
-                <div class="row justify-content-center">
-                <div class="col-2">
-                <label class="form-label" for="password">Password:</label></div>
-                <div class="col-6">
-                <input class="form-control" type="password" id="password" required></div></div><br>
-                <div class="row justify-content-center">
-                    <div class="col-2">
-                <button id="button3" type="submit">Login</button></div></div><br>
-            </form></div>
+        <center><div id="login-section" class="hidden">
+            <form class="form">
+                <p class="form-title">Sign in to your account</p>
+                 <div class="input-container">
+                   <input type="email" placeholder="Enter email">
+                   <span>
+                   </span>
+               </div>
+               <div class="input-container">
+                   <input type="password" placeholder="Enter password">
+                 </div>
+                  <button type="submit" class="submit">
+                 Sign in
+               </button>
+            </form>
         </div></center>
+            <center><div id="user-form" class="hidden">
+                <form class="form">
+                    <p class="form-title">Sign in to your account</p>
+                     <div class="input-container">
+                       <input type="email" placeholder="Enter email">
+                       <span>
+                       </span>
+                   </div>
+                   <div class="input-container">
+                       <input type="password" placeholder="Enter password">
+                     </div>
+                      <button type="submit" class="submit">
+                     Sign in
+                   </button>
+             
+                   <p class="signup-link">
+                     No account?
+                     <a href="./signup.html">Sign up</a>
+                   </p>
+                </form>
+            </div></center>
+        
     </main>
     <footer>
         <p>&copy; 2024 Hospital Operation Scheduler</p>
@@ -61,7 +77,11 @@
         function selectRole(role) {
             selectedRole = role;
             document.getElementById('role-section').classList.add('hidden');
-            document.getElementById('login-section').classList.remove('hidden');
+            if (selectedRole === 'admin') {
+                document.getElementById('login-section').classList.remove('hidden');
+            } else if (selectedRole === 'user') {
+                document.getElementById('user-form').classList.remove('hidden');
+            }
         }
 
         document.getElementById('login-form').addEventListener('submit', function(e) {

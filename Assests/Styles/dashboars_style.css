@@ -14,6 +14,9 @@ body {
     background-image:url(https://img.freepik.com/free-photo/young-handsome-physician-medical-robe-with-stethoscope_1303-17818.jpg?w=740&t=st=1720958854~exp=1720959454~hmac=666897efa6715fc1537333cdf16484745b38b6a60081d8b1ce2f4496f1b863f0);
     background-repeat: no-repeat;
     background-size:cover;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 img{
     position: relative;
@@ -34,6 +37,7 @@ header h1 {
 
 main {
     padding: 20px;
+    flex: 1;
 }
 
 footer {
@@ -41,8 +45,7 @@ footer {
     color: #fff;
     text-align: center;
     padding: 10px;
-    position: absolute;
-    bottom: 0;
+    /* position: absolute; */
     width: 100%;
 }
 
@@ -103,11 +106,6 @@ th, td {
     text-align: left;
 }
 
-th {
-    background-color: #4CAF50;
-    color: white;
-}
-
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
@@ -133,8 +131,8 @@ tr:nth-child(even) {
 .button-box .btn {
     width: 200px;
 }
-div.container, .form-container input{
-    background-color: rgba(0,0,0,.4);
+div.container, .form-container input, .container table, .table thead th {
+    background-color: rgba(0,0,0,.3);
 }
 
 .hidden {
@@ -150,6 +148,6 @@ div.container, .form-container input{
 .form-container table {
     margin: 0 auto;
 }
-.form-container h2, .form-container label{
+.form-container h2, .form-container label, .container h2{
     color: #ffffff;
 }

@@ -4,50 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard - Hospital Operation Scheduler</title>
-    <link rel="stylesheet" href="./Assests/Styles/dashboars_style.css">
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
-    <script src="firebase.js" defer></script>
+    <link rel="stylesheet" href="./Assests/Styles/dashboars_style.css  ">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="./Assests/JS/user.js" defer></script>
+
 </head>
 <body>
     <header>
-        <h1>User Dashboard</h1>
-        <button id="logout" class="logout-btn">Logout</button>
+        <div>
+            <div class="row">
+                <div class="col-2"><img src="./Assests/Images/appolo.jpg" alt="Appolo hospital"></div>
+                <div class="col-8"><h1>User Dashboard</h1></div>
+                <div class="col-2"><a href="index.html"><button id="logout" class="logout">Logout</button></a></div>
+            </div>
+        </div>  
     </header>
     
     <main>
-        <section id="view-doctors">
-            <h2>View Doctor Details</h2>
-            <table id="doctor-table">
+        <div class="container card p-4">
+        <section id="view-doctors" class="">
+            <h2 class="text-center">View Doctor Details</h2>
+            <table id="doctor-table" class="table">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Specialization</th>
+                        <th style="color: white;">Name</th>
+                        <th style="color: white;">Specialization</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
             </table>
         </section>
-
-        <section id="view-surgeries">
-            <h2>View Surgical Information</h2>
-            <table id="surgery-table">
+    </div><br>
+    <div class="container card p-4">
+        <section id="view-surgeries" class="">
+            <h2 class="text-center">View Surgical Information</h2>
+            <table id="surgery-table" class="table">
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Doctor</th>
-                        <th>Patient</th>
-                        <th>Type of Operation</th>
+                        <th style="color: white;">Date</th>
+                        <th style="color: white;">Time</th>
+                        <th style="color: white;">Doctor</th>
+                        <th style="color: white;">Patient</th>
+                        <th style="color: white;">Type of Operation</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
             </table>
         </section>
+    </div>
     </main>
-
     <footer>
         <p>&copy; 2024 Hospital Operation Scheduler</p>
     </footer>
