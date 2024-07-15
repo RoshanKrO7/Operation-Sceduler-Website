@@ -1,3 +1,14 @@
+    // Define the AngularJS application
+    var app = angular.module('dashboardApp', []);
+
+    // Define the controller
+    app.controller('DashboardController', function($scope) {
+        $scope.selectedForm = '';
+
+        $scope.showForm = function(form) {
+            $scope.selectedForm = form;
+        };
+    });
 document.getElementById('logout').addEventListener('click', function() {
     auth.signOut().then(() => {
         window.location.href = 'index.html';
@@ -61,3 +72,4 @@ document.getElementById('operation-form').addEventListener('submit', function(e)
         console.error('Error posting operation schedule: ', error);
     });
 });
+    

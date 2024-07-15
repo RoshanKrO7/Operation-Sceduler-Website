@@ -10,18 +10,26 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     color: #333;
-    line-height: 1.6;
+    line-height: 2.6;
+    background-image:url(https://img.freepik.com/free-photo/young-handsome-physician-medical-robe-with-stethoscope_1303-17818.jpg?w=740&t=st=1720958854~exp=1720959454~hmac=666897efa6715fc1537333cdf16484745b38b6a60081d8b1ce2f4496f1b863f0);
+    background-repeat: no-repeat;
+    background-size:cover;
 }
-
+img{
+    position: relative;
+    height: 100px;
+    top: 8px;
+    margin-bottom: 10px;
+}
 header {
     background-color: #4CAF50;
     color: #fff;
-    padding: 10px 20px;
+    padding: 10px ;
     text-align: center;
 }
 
 header h1 {
-    margin: 0;
+    margin-top:17px;
 }
 
 main {
@@ -55,7 +63,7 @@ button {
     border-radius: 5px;
 }
 
-button:hover {
+button:hover, #button:hover {
     background-color: #45a049;
 }
 
@@ -104,23 +112,44 @@ tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-.logout-btn {
-    float: right;
-    margin-top: -50px;
+#logout {
+    background-color: #4CAF50;
+    color: white;
+    margin-top: 20px;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#logout:hover{
+    background-color: #45a049;
+}
+.button-box {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
 }
 
-/* Specific styles for the role selection page */
-#role-section {
-    text-align: center;
-    padding: 50px;
+.button-box .btn {
+    width: 200px;
 }
-
-#role-section button {
-    margin: 10px;
-    padding: 15px 30px;
-    font-size: 18px;
+div.container, .form-container input{
+    background-color: rgba(0,0,0,.4);
 }
 
 .hidden {
     display: none;
+}
+.form-container {
+    width: 700px;
+    margin: 0 auto;
+}
+.button-box button {
+    width: 150px;
+}
+.form-container table {
+    margin: 0 auto;
+}
+.form-container h2, .form-container label{
+    color: #ffffff;
 }
