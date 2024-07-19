@@ -1,4 +1,3 @@
-
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -6,13 +5,15 @@ body {
     align-items: center;
     background-image:url(https://img.freepik.com/free-photo/young-handsome-physician-medical-robe-with-stethoscope_1303-17818.jpg?w=740&t=st=1720958854~exp=1720959454~hmac=666897efa6715fc1537333cdf16484745b38b6a60081d8b1ce2f4496f1b863f0);
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
 }
-img{
+
+img {
     position: relative;
     height: 100px;
     top: 8px;
 }
+
 header {
     background-color: #4CAF50;
     color: #fff;
@@ -26,7 +27,6 @@ header h1 {
 
 main {
     padding: 50px;
-    
 }
 
 footer {
@@ -49,17 +49,16 @@ section {
     margin-bottom: 40px;
 }
 
-#button1,#button2,#button3 {
-    
+#button1, #button2, #button3 {
     background-color: #4CAF50;
     border: 0;
     border-radius: 10%;
     color: #fff;
-    padding:10px 20px;
+    padding: 10px 20px;
     font-weight: bold;
 }   
 
-#button1:hover, #button2:hover, #button3:hover{
+#button1:hover, #button2:hover, #button3:hover {
     background-color: #32ced3;
 }
 
@@ -76,14 +75,11 @@ input, select {
     font-size: 16px;
 }
 
-
-
 .logout-btn {
     float: right;
     margin-top: -50px;
 }
 
-/* Specific styles for the role selection page */
 #role-section {
     width: 40rem;
     padding: 50px;
@@ -98,17 +94,16 @@ input, select {
 .hidden {
     display: none;
 }
-div.col-8 h2, label, div.container h2,form.form-control {
+
+div.col-8 h2, label, div.container h2, form.form-control {
     color: #ffffff;
 }
-div.container, input.form-control, #user-form input, #login-section input{
+
+div.container, input.form-control, #user-form input, #login-section input {
     background-color: rgba(0,0,0,.3);
     max-width: 450px;
 }
 
-
-
-/* For the user login form */
 .form {
     background-color: #fff;
     display: block;
@@ -117,38 +112,38 @@ div.container, input.form-control, #user-form input, #login-section input{
     border-radius: 0.5rem;
     background-color: rgba(0,0,0,.4);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  }
-  
-  .form-title {
+}
+
+.form-title {
     font-size: 1.25rem;
     line-height: 1.75rem;
     font-weight: 600;
     text-align: center;
     color: #000;
-  }
-  
-  .input-container {
+}
+
+.input-container {
     position: relative;
-  }
-  
-  .input-container input, .form button {
+}
+
+.input-container input, .form button {
     outline: none;
     border: 1px solid #e5e7eb;
     margin: 8px 0;
-  }
-  
-  .input-container input {
+}
+
+.input-container input {
     background-color: #fff;
     padding: 1rem;
     padding-right: 3rem;
     font-size: 0.875rem;
     line-height: 1.25rem;
-    width: 300px;
+    width: 100%;
     border-radius: 0.5rem;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  }
-  
-  .submit {
+}
+
+.submit {
     display: block;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
@@ -162,19 +157,86 @@ div.container, input.form-control, #user-form input, #login-section input{
     width: 100%;
     border-radius: 0.5rem;
     text-transform: uppercase;
-  }
-  
-  .signup-link {
+}
+
+.signup-link {
     color: #000000;
     font-size: 0.875rem;
     line-height: 1.25rem;
     text-align: center;
-  }
-  
-  .signup-link a {
+}
+
+.signup-link a {
     text-decoration: underline;
-  }
-  
-  .input-container ::placeholder{
+}
+
+.input-container ::placeholder {
     color: #000000;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    header, footer {
+        padding: 15px;
+        text-align: center;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    #role-section {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .form {
+        max-width: 90%;
+    }
+
+    .input-container input {
+        width: 100%;
+    }
+
+    .logout-btn {
+        margin-top: 10px;
+        float: none;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    header, footer {
+        padding: 10px;
+        text-align: center;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    #role-section {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .form {
+        max-width: 100%;
+    }
+
+    .input-container input {
+        width: 100%;
+    }
+
+    .logout-btn {
+        margin-top: 5px;
+        float: none;
+        text-align: center;
+    }
+
+    #button1, #button2, #button3 {
+        width: 100%;
+        padding: 10px;
+    }
 }
