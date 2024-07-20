@@ -8,139 +8,138 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>SignUP Page</title>
     <style>
-    .form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 350px;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 20px;
-  position: relative;
-  background-color: rgba(0,0,0,.3);
-}
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 350px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            position: relative;
+            background-color: rgba(0,0,0,.3);
+        }
 
-.title {
-  font-size: 28px;
-  color:#000000;
-  font-weight: 600;
-  letter-spacing: -1px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding-left: 30px;
-}
+        .title {
+            font-size: 28px;
+            color:#000000;
+            font-weight: 600;
+            letter-spacing: -1px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-left: 30px;
+        }
 
-.title::before,.title::after {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  left: 0px;
-  background-color: #4CAF50;
-}
+        .title::before,.title::after {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            left: 0px;
+            background-color: #4CAF50;
+        }
 
-.title::before {
-  width: 18px;
-  height: 18px;
-  background-color: #000000;
-}
+        .title::before {
+            width: 18px;
+            height: 18px;
+            background-color: #000000;
+        }
 
-.title::after {
-  width: 18px;
-  height: 18px;
-  animation: pulse 1s linear infinite;
-}
+        .title::after {
+            width: 18px;
+            height: 18px;
+            animation: pulse 1s linear infinite;
+        }
 
-.message, .signin {
-  color: rgba(0, 0, 0, 0.822);
-  font-size: 14px;
-}
+        .message, .signin {
+            color: rgba(0, 0, 0, 0.822);
+            font-size: 14px;
+        }
 
-.signin {
-  text-align: center;
-}
+        .signin {
+            text-align: center;
+        }
 
-.signin a {
-  color: royalblue;
-}
+        .signin a {
+            color: royalblue;
+        }
 
-.signin a:hover {
-  text-decoration: underline royalblue;
-}
+        .signin a:hover {
+            text-decoration: underline royalblue;
+        }
 
-.flex {
-  display: flex;
-  width: 100%;
-  gap: 6px;
-}
+        .flex {
+            display: flex;
+            width: 100%;
+            gap: 6px;
+        }
 
-.form label {
-  position: relative;
-}
+        .form label {
+            position: relative;
+        }
 
-.form label .input {
-  width: 100%;
-  padding: 10px 10px 20px 10px;
-  outline: 0;
-  border: 1px solid rgba(105, 105, 105, 0.397);
-  border-radius: 10px;
-  background-color: rgba(0,0,0,.3);
-  color: #fff;
-}
+        .form label .input {
+            width: 100%;
+            padding: 10px 10px 20px 10px;
+            outline: 0;
+            border: 1px solid rgba(105, 105, 105, 0.397);
+            border-radius: 10px;
+            background-color: rgba(0,0,0,.3);
+            color: #fff;
+        }
 
-.form label .input + span {
-  position: absolute;
-  left: 10px;
-  top: 15px;
-  color: rgb(10, 0, 0);
-  font-size: 0.9em;
-  cursor: text;
-  transition: 0.3s ease;
-}
+        .form label .input + span {
+            position: absolute;
+            left: 10px;
+            top: 15px;
+            color: rgb(10, 0, 0);
+            font-size: 0.9em;
+            cursor: text;
+            transition: 0.3s ease;
+        }
 
-.form label .input:placeholder-shown + span {
-  top: 15px;
-  font-size: 0.9em;
-}
+        .form label .input:placeholder-shown + span {
+            top: 15px;
+            font-size: 0.9em;
+        }
 
-.form label .input:focus + span,.form label .input:valid + span {
-  top: 30px;
-  font-size: 0.7em;
-  font-weight: 600;
-}
+        .form label .input:focus + span,.form label .input:valid + span {
+            top: 30px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
 
-.form label .input:valid + span {
-  color: green;
-}
+        .form label .input:valid + span {
+            color: green;
+        }
 
-.submit {
-  border: none;
-  outline: none;
-  background-color: royalblue;
-  padding: 10px;
-  border-radius: 10px;
-  color: #fff;
-  font-size: 16px;
-  transform: .3s ease;
-}
+        .submit {
+            border: none;
+            outline: none;
+            background-color: royalblue;
+            padding: 10px;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 16px;
+            transform: .3s ease;
+        }
 
-.submit:hover {
-  background-color: rgb(56, 90, 194);
-}
+        .submit:hover {
+            background-color: rgb(56, 90, 194);
+        }
 
-@keyframes pulse {
-  from {
-    transform: scale(0.9);
-    opacity: 1;
-  }
-
-  to {
-    transform: scale(1.8);
-    opacity: 0;
-  }
-}
+        @keyframes pulse {
+            from {
+                transform: scale(0.9);
+                opacity: 1;
+            }
+            to {
+                transform: scale(1.8);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -159,35 +158,91 @@
             <p class="message">Signup now  </p>
                 <div class="flex">
                 <label>
-                    <input required="" placeholder="" type="text" class="input">
+                    <input required name="firstname" placeholder="" type="text" class="input">
                     <span style="color: #fff;">Firstname</span>
                 </label>
         
                 <label>
-                    <input required="" placeholder="" type="text" class="input">
+                    <input required name="lastname" placeholder="" type="text" class="input">
                     <span style="color: #fff;">Lastname</span>
                 </label>
             </div>  
                     
             <label>
-                <input required="" placeholder="" type="email" class="input">
+                <input required name="email" placeholder="" type="email" class="input">
                 <span style="color: #fff;">Email</span>
             </label> 
                 
             <label>
-                <input required="" placeholder="" type="password" class="input">
+                <input required name="password" placeholder="" type="password" class="input">
                 <span style="color: #fff;">Password</span>
             </label>
             <label>
-                <input required="" placeholder="" type="password" class="input">
+                <input required name="confirmPassword" placeholder="" type="password" class="input">
                 <span style="color: #fff;">Confirm password</span>
             </label>
-            <button class="submit">Submit</button>
-            <p class="signin">Already have an acount ? <a href="./index.html">Signin</a> </p>
+            <button type="submit" class="submit">Submit</button>
+            <p class="signin">Already have an account? <a href="./index.html">Signin</a> </p>
         </form></center>
     </main><br>
-<footer style="position:fixed;">
-    <p>&copy; 2024 Hospital Operation Scheduler</p>
-</footer>
+    <footer style="position:fixed;">
+        <p>&copy; 2024 Hospital Operation Scheduler</p>
+    </footer>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-analytics.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB6IagQ41Nr3QxU2hjdt1hMvXdlkjzNJxo",
+            authDomain: "hospital-operation-scheduler.firebaseapp.com",
+            databaseURL: "https://hospital-operation-scheduler-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "hospital-operation-scheduler",
+            storageBucket: "hospital-operation-scheduler.appspot.com",
+            messagingSenderId: "210565836841",
+            appId: "1:210565836841:web:fdb6368f1b44995bbdac38",
+            measurementId: "G-C8X53NM98N"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+
+        // Handle form submission
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const formData = new FormData(form);
+                const userData = {
+                    firstname: formData.get('firstname'),
+                    lastname: formData.get('lastname'),
+                    email: formData.get('email'),
+                    password: formData.get('password'),
+                    confirmPassword: formData.get('confirmPassword'),
+                };
+
+                try {
+                    // Validate if password and confirmPassword match
+                    if (userData.password !== userData.confirmPassword) {
+                        alert('Passwords do not match.');
+                        return;
+                    }
+
+                    // Save data to Firestore
+                    await addDoc(collection(db, 'Users'), userData);
+                    alert('User data saved successfully!');
+                    form.reset(); // Clear the form fields
+                } catch (error) {
+                    console.error('Error saving user data: ', error);
+                    alert('Error saving user data.');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

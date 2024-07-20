@@ -49,7 +49,7 @@ section {
     margin-bottom: 40px;
 }
 
-#button1, #button2, #button3 {
+#button-admin, #button-user {
     background-color: #4CAF50;
     border: 0;
     border-radius: 10%;
@@ -58,7 +58,7 @@ section {
     font-weight: bold;
 }   
 
-#button1:hover, #button2:hover, #button3:hover {
+#user-signin:hover, #button-admin:hover, #button-user:hover, #admin-signin:hover {
     background-color: #32ced3;
 }
 
