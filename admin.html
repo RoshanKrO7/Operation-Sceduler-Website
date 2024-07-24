@@ -103,60 +103,16 @@
         <div class="container card p-4 my-4" id="post-operation-schedule" ng-show="selectedForm === 'operations'">
             <section class="form-container">
                 <h2 style="text-align: center;">Post Operation Schedule</h2>
-                <form id="operation-form">
-                    <div class="mb-3 row">
-                        <label for="operation-date" class="col-sm-4 col-form-label">Date:</label>
-                        <div class="col-sm-8">
-                            <input type="date" class="form-control" id="operation-date" required>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="operation-time" class="col-sm-4 col-form-label">Time:</label>
-                        <div class="col-sm-8">
-                            <input type="time" class="form-control" id="operation-time" required>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="operation-doctor" class="col-sm-4 col-form-label">Doctor:</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="operation-doctor" required>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="operation-patient" class="col-sm-4 col-form-label">Patient:</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="operation-patient" required>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="operation-type" class="col-sm-4 col-form-label">Type of Operation:</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="operation-type" required>
-                        </div>
-                    </div>
-                    <div class="col text-center">
-                        <button type="submit" class="btn btn-primary">Post Schedule</button>
-                    </div>
-                </form>
-                <table id="operation-table" class="table mt-4">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Doctor</th>
-                            <th>Patient</th>
-                            <th>Type of Operation</th>
-                            <th></button>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </section>
-        </div>
-        <div class="container card p-4 my-4" id="manage-doctors" ng-show="selectedForm === 'OT'">
-            <section class="form-container">
-                <h2>Manage OT</h2>
                 <form id="surgery-form">
+                    <div class="mb-3 row">
+                        <div class="col-sm-6">
+                            <label for="anaesthesia" class="form-label">Doctor Name</label>
+                            <input type="text" class="form-control" id="anaesthesia" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="anaesthesiologist" class="form-label">Patient Name</label>
+                            <input type="text" class="form-control" id="anaesthesiologist" required>
+                        </div></div>
                     <div class="mb-3 row ">
                     <div class="col-sm-4">
                         <label for="date" class="form-label">Date</label>
@@ -203,10 +159,17 @@
                     </div></div>
                     <button type="submit" class="btn btn-primary">Add Surgery</button>
                 </form>
+            </section>
+        </div>
+        <div class="container card p-4 my-4" id="manage-doctors" ng-show="selectedForm === 'OT'">
+            <section class="form-container">
+                
                 <h2 class="mt-3 mb-3">Surgery Schedule</h2>
                 <table class="table mt-4">
                     <thead style="width: 120px;">
                         <tr>
+                            <th>Doctor Name</th>
+                            <th>patient name</th>
                             <th>Date</th>
                             <th>Time</th>
                             <th>OT ID</th>
@@ -230,7 +193,54 @@
     <footer>
         <p>&copy; 2024 Hospital Operation Scheduler</p>
     </footer>
-    <script src="./Assests/JS/admin.js">
+    <script src="./Assests/JS/admin.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-analytics.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB6IagQ41Nr3QxU2hjdt1hMvXdlkjzNJxo",
+            authDomain: "hospital-operation-scheduler.firebaseapp.com",
+            databaseURL: "https://hospital-operation-scheduler-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "hospital-operation-scheduler",
+            storageBucket: "hospital-operation-scheduler.appspot.com",
+            messagingSenderId: "210565836841",
+            appId: "1:210565836841:web:fdb6368f1b44995bbdac38",
+            measurementId: "G-C8X53NM98N"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+
+        // Handle form submission
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('doctor-form');
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const formData = new FormData(form);
+                const DocData = {
+                    firstname: formData.get('doctor-name'),
+                    lastname: formData.get('doctor-specialization'),
+                };
+
+                try {
+                    
+                    // Save data to Firestore
+                    await addDoc(collection(db, 'Doctor'), DocData);
+                    alert('Doctor data saved successfully!');
+                    form.reset(); // Clear the form fields
+                } catch (error) {
+                    console.error('Error saving Doctor data: ', error);
+                    alert('Error saving Doctor data.');
+                }
+            });
+        });
     </script>
 </body>
 </html>

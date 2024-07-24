@@ -100,6 +100,8 @@ input[type="submit"], button {
 table {
     width: 100%;
     margin-top: 20px;
+    background-color: #ffffff; /* Add background color for better visibility */
+    border-collapse: collapse; /* Ensures borders are combined */
 }
 
 table, th, td {
@@ -148,7 +150,7 @@ div.container, .form-container input, .container table, .table thead th, .form-c
 }
 
 .form-container {
-    width: 700px;
+    width: 1000px;
     margin: 0 auto;
 }
 
@@ -158,6 +160,7 @@ div.container, .form-container input, .container table, .table thead th, .form-c
 
 .form-container table {
     margin: 0 auto;
+    width: 100%; /* Ensure the table takes the full width */
 }
 
 .form-container h2, .form-container label, .container h2, .form-container textarea {
