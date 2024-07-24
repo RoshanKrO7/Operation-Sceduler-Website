@@ -11,28 +11,34 @@ body {
     background-color: #f0f0f0;
     color: #333;
     line-height: 2.6;
-    background-image:url(https://img.freepik.com/free-photo/young-handsome-physician-medical-robe-with-stethoscope_1303-17818.jpg?w=740&t=st=1720958854~exp=1720959454~hmac=666897efa6715fc1537333cdf16484745b38b6a60081d8b1ce2f4496f1b863f0);
+    background-image: url(https://img.freepik.com/free-photo/young-handsome-physician-medical-robe-with-stethoscope_1303-17818.jpg?w=740&t=st=1720958854~exp=1720959454~hmac=666897efa6715fc1537333cdf16484745b38b6a60081d8b1ce2f4496f1b863f0);
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
+    background-attachment: fixed; /* Ensures the background image is fixed */
+    background-position: center; /* Centers the background image */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
-img{
+
+img {
     position: relative;
     height: 100px;
     top: 8px;
     margin-bottom: 10px;
+    display: block; /* Ensures images are block-level and do not overlap other content */
+    max-width: 100%; /* Prevents images from exceeding the container's width */
 }
+
 header {
     background-color: #4CAF50;
     color: #fff;
-    padding: 10px ;
+    padding: 10px;
     text-align: center;
 }
 
 header h1 {
-    margin-top:17px;
+    margin-top: 17px;
 }
 
 main {
@@ -45,8 +51,8 @@ footer {
     color: #fff;
     text-align: center;
     padding: 10px;
-    /* position: absolute; */
     width: 100%;
+    bottom: 0;
 }
 
 h2 {
@@ -93,9 +99,7 @@ input[type="submit"], button {
 
 table {
     width: 100%;
-    /* border-collapse: collapse; */
     margin-top: 20px;
-    
 }
 
 table, th, td {
@@ -120,9 +124,11 @@ tr:nth-child(even) {
     border-radius: 5px;
     cursor: pointer;
 }
-#logout:hover{
+
+#logout:hover {
     background-color: #45a049;
 }
+
 .button-box {
     display: flex;
     justify-content: space-around;
@@ -132,23 +138,103 @@ tr:nth-child(even) {
 .button-box .btn {
     width: 200px;
 }
-div.container, .form-container input , .container table, .table thead th, .form-container textarea {
-    background-color: rgba(0,0,0,.3);
+
+div.container, .form-container input, .container table, .table thead th, .form-container textarea {
+    background-color: rgba(0, 0, 0, .3);
 }
 
 .hidden {
     display: none;
 }
+
 .form-container {
     width: 700px;
     margin: 0 auto;
 }
+
 .button-box button {
     width: 150px;
 }
+
 .form-container table {
     margin: 0 auto;
 }
-.form-container h2, .form-container label, .container h2, .form-container textarea{
+
+.form-container h2, .form-container label, .container h2, .form-container textarea {
     color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .form-container {
+        width: 90%;
+    }
+
+    .button-box {
+        flex-direction: column;
+    }
+
+    .button-box .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    header, footer {
+        padding: 15px;
+        text-align: center;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    .form-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    button, #logout {
+        width: 100%;
+        padding: 12px 0;
+    }
+
+    table, th, td {
+        font-size: 14px;
+    }
+
+    .button-box {
+        flex-direction: column;
+    }
+
+    .button-box button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    header, footer {
+        padding: 10px;
+        text-align: center;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    .form-container {
+        width: 100%;
+        padding: 5px;
+    }
+
+    button, #logout {
+        padding: 10px 0;
+    }
+
+    table, th, td {
+        font-size: 12px;
+        padding: 10px;
+    }
 }
