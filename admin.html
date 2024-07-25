@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <script src="./Assests/JS/admin.js"></script>
+    
 </head>
 <body ng-app="dashboardApp" ng-controller="DashboardController">
     <header>
@@ -70,25 +70,28 @@
                     <div class="mb-3 row">
                         <label for="patient-name" class="col-sm-4 col-form-label">Patient Name:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="patient-name" required>
+                            <input type="text" class="form-control" id="patient-name" name="patient-name" required>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="patient-age" class="col-sm-4 col-form-label">Age:</label>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="patient-age" required>
+                            <input type="number" class="form-control" id="patient-age" name="patient-age" required>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="patient-condition" class="col-sm-4 col-form-label">Condition:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="patient-condition" required>
+                            <input type="text" class="form-control" id="patient-condition" name="patient-condition" required>
                         </div>
                     </div>
                     <div class="col text-center">
-                        <button type="submit" class="btn btn-primary">Add Patient</button>
+                        <button type="submit" class="btn btn-primary">Save Patient</button>
                     </div>
                 </form>
+                <div class="text-center my-2">
+                    <button class="btn btn-primary" id="fetch-patients">Fetch Patients</button>
+                </div>
                 <table id="patient-table" class="table mt-4">
                     <thead>
                         <tr>
@@ -98,7 +101,7 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody id="patient-table-body"></tbody>
                 </table>
             </section>
         </div>
@@ -110,55 +113,55 @@
                     <div class="mb-3 row">
                         <div class="col-sm-6">
                             <label for="anaesthesia" class="form-label">Doctor Name</label>
-                            <input type="text" class="form-control" id="anaesthesia" required>
+                            <input type="text" class="form-control" id="doctor-name" name="doctor-name" required>
                         </div>
                         <div class="col-sm-6">
                             <label for="anaesthesiologist" class="form-label">Patient Name</label>
-                            <input type="text" class="form-control" id="anaesthesiologist" required>
+                            <input type="text" class="form-control" id="patient-name" name="patient-name" required>
                         </div></div>
                     <div class="mb-3 row ">
                     <div class="col-sm-4">
                         <label for="date" class="form-label">Date</label>
-                        <input type="date" class="form-control" id="date" required>
+                        <input type="date" class="form-control" id="date" name="date" required>
                     </div>
                     <div class="col-sm-4">
                         <label for="time" class="form-label">Time</label>
-                        <input type="time" class="form-control" id="time" required>
+                        <input type="time" class="form-control" id="time" name="time" required>
                     </div>
                     <div class="col-sm-4">
                         <label for="ot-id" class="form-label">Operation Theater ID</label>
-                        <input type="text" class="form-control" id="ot-id" required>
+                        <input type="text" class="form-control" id="ot-id" name="ot-id" required>
                     </div></div>
                     <div class="mb-3 row">
                     <div class="col-sm-6">
                         <label for="anaesthesia" class="form-label">Anaesthesia Type</label>
-                        <input type="text" class="form-control" id="anaesthesia" required>
+                        <input type="text" class="form-control" id="anaesthesia"  name="anaesthesia" required>
                     </div>
                     <div class="col-sm-6">
                         <label for="anaesthesiologist" class="form-label">Anaesthesiologist</label>
-                        <input type="text" class="form-control" id="anaesthesiologist" required>
+                        <input type="text" class="form-control" id="anaesthesiologist" name="anaesthesiologist" required>
                     </div></div>
                     <div class="mb-3 row">
                     <div class="col-sm-4">
                         <label for="medic" class="form-label">Medic</label>
-                        <input type="text" class="form-control" id="medic" required>
+                        <input type="text" class="form-control" id="medic" name="medic" required>
                     </div>
                     <div class="col-sm-4">
                         <label for="nurses" class="form-label">Nurses</label>
-                        <input type="text" class="form-control" id="nurses">
+                        <input type="text" class="form-control" id="nurses" name="nurses">
                     </div>
                     <div class="col-sm-4">
                         <label for="reports" class="form-label">Surgical Reports</label>
-                        <input type="file" class="form-control" id="reports" multiple>
+                        <input type="file" class="form-control" id="reports" name="reports" multiple>
                     </div></div>
                     <div class="mb-3  row">
                     <div class="col-sm-6">
                         <label for="remarks" class="form-label">Remarks</label>
-                        <textarea class="form-control" id="remarks"></textarea>
+                        <textarea class="form-control" id="remarks" name="remarks"></textarea>
                     </div>
                     <div class="col-sm-6">
                         <label for="unique-requirements" class="form-label">Unique Requirements</label>
-                        <textarea class="form-control" id="unique-requirements"></textarea>
+                        <textarea class="form-control" id="unique-requirements" name="unique-requirements"></textarea>
                     </div></div>
                     <button type="submit" class="btn btn-primary">Add Surgery</button>
                 </form>
@@ -196,104 +199,26 @@
     <footer>
         <p>&copy; 2024 Hospital Operation Scheduler</p>
     </footer>
+<script>    // Define the AngularJS application
+    var app = angular.module('dashboardApp', []);
 
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-analytics.js";
+    // Define the controller
+    app.controller('DashboardController', function($scope) {
+        $scope.selectedForm = '';
 
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyB6IagQ41Nr3QxU2hjdt1hMvXdlkjzNJxo",
-            authDomain: "hospital-operation-scheduler.firebaseapp.com",
-            databaseURL: "https://hospital-operation-scheduler-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "hospital-operation-scheduler",
-            storageBucket: "hospital-operation-scheduler.appspot.com",
-            messagingSenderId: "210565836841",
-            appId: "1:210565836841:web:fdb6368f1b44995bbdac38",
-            measurementId: "G-C8X53NM98N"
+        $scope.showForm = function(form) {
+            $scope.selectedForm = form;
         };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const db = getFirestore(app);
-
-        // Fetch data from Firestore and append to table
-        document.getElementById("fetch-doctors").addEventListener("click", fetchData);
-        
-        async function fetchData() {
-            const querySnapshot = await getDocs(collection(db, "Doctor"));
-            const tableBody = document.getElementById("doctor-table-body");
-            tableBody.innerHTML = ""; // Clear existing table data
-            querySnapshot.forEach((doc) => {
-                const data = doc.data();
-                const row = document.createElement("tr");
-                const nameCell = document.createElement("td");
-                const specializationCell = document.createElement("td");
-                const actionCell = document.createElement("td");
-                const deleteButton = document.createElement("button");
-                const editButton = document.createElement("button");
-
-                nameCell.textContent = data.firstname;
-                specializationCell.textContent = data.specialization;
-                deleteButton.textContent = "Delete";
-                deleteButton.classList.add("btn", "btn-danger");
-                deleteButton.addEventListener("click", () => deleteDoctor(doc.id));
-                editButton.textContent = "Edit";
-                editButton.classList.add("btn", "btn-warning", "mx-1");
-                editButton.addEventListener("click",()=>editDoctor(doc.id,data));
-
-                 actionCell.appendChild(editButton);
-                actionCell.appendChild(deleteButton);
-                row.appendChild(nameCell);
-                row.appendChild(specializationCell);
-                row.appendChild(actionCell);
-                tableBody.appendChild(row);
-            });
-        }
-
-        // Delete doctor from Firestore
-        async function deleteDoctor(docId) {
-            await deleteDoc(doc(db, "Doctor", docId));
-            console.log("Document successfully deleted!");
-            fetchData(); // Refresh table after deletion
-        }
-
-        //Edit doctor from Firestore
-        function editDoctor(docId, data) {
-    document.getElementById('doctor-name').value = data.firstname;
-    document.getElementById('doctor-specialization').value = data.specialization;
-    document.getElementById('doctor-form').dataset.docId = docId; // Store docId in form's dataset
-    deleteDoctor(docId)
-
-}
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // Handle form submission for adding a doctor
-            const doctorForm = document.querySelector('#doctor-form');
-            doctorForm.addEventListener('submit', async (event) => {
-                event.preventDefault();
-
-                const formData = new FormData(doctorForm);
-                const docData = {
-                    firstname: formData.get('doctor-name'),
-                    specialization: formData.get('doctor-specialization'),
-                };
-
-                try {
-                    await addDoc(collection(db, 'Doctor'), docData);
-                    alert('Doctor added successfully!');
-                    doctorForm.reset();
-                    fetchData()
-                } catch (error) {
-                    console.error('Error adding doctor: ', error);
-                    alert('Error adding doctor.');
-                }
-            });
-        });
-    </script>
+    });
+document.getElementById('logout').addEventListener('click', function() {
+    auth.signOut().then(() => {
+        window.location.href = 'index.html';
+    }).catch((error) => {
+        console.error('Error signing out: ', error);
+    });
+});
+</script>
+<script type="module" src="./Assests/JS/admin.js"></script>
 </body>
 </html>
  
