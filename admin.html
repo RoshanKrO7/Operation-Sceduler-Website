@@ -234,13 +234,18 @@
                 const specializationCell = document.createElement("td");
                 const actionCell = document.createElement("td");
                 const deleteButton = document.createElement("button");
+                const editButton = document.createElement("button");
 
                 nameCell.textContent = data.firstname;
                 specializationCell.textContent = data.specialization;
                 deleteButton.textContent = "Delete";
                 deleteButton.classList.add("btn", "btn-danger");
                 deleteButton.addEventListener("click", () => deleteDoctor(doc.id));
+                editButton.textContent = "Edit";
+                editButton.classList.add("btn", "btn-warning", "mx-1");
+                editButton.addEventListener("click",()=>editDoctor(doc.id,data));
 
+                 actionCell.appendChild(editButton);
                 actionCell.appendChild(deleteButton);
                 row.appendChild(nameCell);
                 row.appendChild(specializationCell);
@@ -255,6 +260,15 @@
             console.log("Document successfully deleted!");
             fetchData(); // Refresh table after deletion
         }
+
+        //Edit doctor from Firestore
+        function editDoctor(docId, data) {
+    document.getElementById('doctor-name').value = data.firstname;
+    document.getElementById('doctor-specialization').value = data.specialization;
+    document.getElementById('doctor-form').dataset.docId = docId; // Store docId in form's dataset
+    deleteDoctor(docId)
+
+}
 
         document.addEventListener('DOMContentLoaded', () => {
             // Handle form submission for adding a doctor
