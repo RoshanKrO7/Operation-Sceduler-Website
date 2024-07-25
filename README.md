@@ -7,7 +7,11 @@ INDEX.HTML
 6.	After logging in the user form redirects to the User Dash Board
 
 ADMIN DASHBOARD
-1.	This contains 3 button according to the need and requirement of the documentation and shows action and data accordingly.
+1.	This contains 4 button according to the need and requirement.
+2. The first button manages doctor and save, delete and edit the name and the specialization of the doctor to the database.
+3. The second button manages patient and save, delete and edit the patient's name, age and condition of the patient.
+4. The third button post the operation schedule with all the necessary details related to the operation.
+5. The fourth button shows all the scheduled operation with all the entered details in a tabular format.
 
 USER DASH BOARD
 1.	It shows the information of the doctors and the operation schedules.
