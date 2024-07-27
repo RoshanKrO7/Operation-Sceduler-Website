@@ -112,11 +112,11 @@
                 <form id="surgery-form">
                     <div class="mb-3 row">
                         <div class="col-sm-6">
-                            <label for="anaesthesia" class="form-label">Doctor Name</label>
+                            <label for="doctor-name" class="form-label">Doctor Name</label>
                             <input type="text" class="form-control" id="doctor-name" name="doctor-name" required>
                         </div>
                         <div class="col-sm-6">
-                            <label for="anaesthesiologist" class="form-label">Patient Name</label>
+                            <label for="patient-name" class="form-label">Patient Name</label>
                             <input type="text" class="form-control" id="patient-name" name="patient-name" required>
                         </div></div>
                     <div class="mb-3 row ">
@@ -129,8 +129,16 @@
                         <input type="time" class="form-control" id="time" name="time" required>
                     </div>
                     <div class="col-sm-4">
+                        
                         <label for="ot-id" class="form-label">Operation Theater ID</label>
-                        <input type="text" class="form-control" id="ot-id" name="ot-id" required>
+                        <select class="form-select"  id="ot-id" name="ot-id" required>
+                            <option value="" disabled selected>Select OT</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                        </select>
+                        
                     </div></div>
                     <div class="mb-3 row">
                     <div class="col-sm-6">
@@ -168,8 +176,67 @@
             </section>
         </div>
         <div class="container card p-4 my-4" id="manage-doctors" ng-show="selectedForm === 'OT'">
+            <div class="modal-content" id="modal-content" style="display: none;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Surgery Schedule</h5>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+                <div id="modal-body" class="modal-body">
+                    <form id="edit-schedule-form">
+                        <input  id="edit-doc-id" name="edit-doc-id">
+                        <div class="mb-3">
+                            <label for="edit-date" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="edit-date" name="edit-date" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-time" class="form-label">Time</label>
+                            <input type="time" class="form-control" id="edit-time" name="edit-time" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-ot-id" class="form-label">Operation Theater ID</label>
+                            <input type="text" class="form-control" id="edit-ot-id" name="edit-ot-id" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-doctor-name" class="form-label">Doctor Name</label>
+                            <input type="text" class="form-control" id="edit-doctor-name" name="edit-doctor-name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-patient-name" class="form-label">Patient Name</label>
+                            <input type="text" class="form-control" id="edit-patient-name" name="edit-patient-name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-anaesthesia-type" class="form-label">Anaesthesia Type</label>
+                            <input type="text" class="form-control" id="edit-anaesthesia-type" name="edit-anaesthesia-type" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-anaesthesiologist" class="form-label">Anaesthesiologist</label>
+                            <input type="text" class="form-control" id="edit-anaesthesiologist" name="edit-anaesthesiologist" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-medic" class="form-label">Medic</label>
+                            <input type="text" class="form-control" id="edit-medic" name="edit-medic" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-nurses" class="form-label">Nurses</label>
+                            <input type="text" class="form-control" id="edit-nurses" name="edit-nurses">
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-reports" class="form-label">Surgical Reports</label>
+                            <input type="file" class="form-control" id="edit-reports" name="edit-reports" multiple>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-remarks" class="form-label">Remarks</label>
+                            <textarea class="form-control" id="edit-remarks" name="edit-remarks"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-unique-requirements" class="form-label">Unique Requirements</label>
+                            <textarea class="form-control" id="edit-unique-requirements" name="edit-unique-requirements"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Surgery</button>
+                    </form>
+                </div>
+            </div>
             <section class="form-container">
-                
                 <h2 class="mt-3 mb-3">Surgery Schedule</h2>
                 <table class="table mt-4">
                     <thead style="width: 120px;">
@@ -183,7 +250,7 @@
                             <th>Anaesthesiologist</th>
                             <th>Medic</th>
                             <th>Nurses</th>
-                            <th>Reports</th>
+                            <!-- <th>Reports</th> -->
                             <th>Remarks</th>
                             <th>Unique Requirements</th>
                             <th>Actions</th>
@@ -195,6 +262,9 @@
                 </table>
             </section>
         </div>
+      
+ 
+
     </main>
     <footer>
         <p>&copy; 2024 Hospital Operation Scheduler</p>

@@ -97,11 +97,11 @@ input[type="submit"], button {
     margin-top: 10px;
 }
 
-table {
+/* table {
     width: 100%;
     margin-top: 20px;
-    background-color: #ffffff; /* Add background color for better visibility */
-    border-collapse: collapse; /* Ensures borders are combined */
+    background-color: #ffffff; 
+    border-collapse: collapse; 
 }
 
 table, th, td {
@@ -115,7 +115,35 @@ th, td {
 
 tr:nth-child(even) {
     background-color: #f2f2f2;
+} */
+.table-container {
+    overflow-x: auto;
 }
+.table {
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+    white-space: wrap;
+}
+
+.table th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+
+.table .btn {
+    margin: 2px;
+    width: 100%;
+    font-size: 14px;
+}
+
 
 #logout {
     background-color: #4CAF50;
@@ -143,6 +171,8 @@ tr:nth-child(even) {
 
 div.container, .form-container input, .container table, .table thead th, .form-container textarea {
     background-color: rgba(0, 0, 0, .3);
+    max-width: 100%;
+    overflow-x: auto;
 }
 
 .hidden {
@@ -167,6 +197,7 @@ div.container, .form-container input, .container table, .table thead th, .form-c
     color: #ffffff;
 }
 
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .form-container {
@@ -181,6 +212,7 @@ div.container, .form-container input, .container table, .table thead th, .form-c
         width: 100%;
         margin-bottom: 10px;
     }
+
 }
 
 @media (max-width: 768px) {
@@ -215,6 +247,9 @@ div.container, .form-container input, .container table, .table thead th, .form-c
         width: 100%;
         margin-bottom: 10px;
     }
+    .table th, .table td {
+        font-size: 12px; 
+    }
 }
 
 @media (max-width: 480px) {
@@ -239,5 +274,8 @@ div.container, .form-container input, .container table, .table thead th, .form-c
     table, th, td {
         font-size: 12px;
         padding: 10px;
+    }
+    .table th, .table td {
+        font-size: 12px; 
     }
 }
