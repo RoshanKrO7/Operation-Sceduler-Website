@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-/* General styles */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -14,8 +14,8 @@ body {
     background-image: url(https://img.freepik.com/free-photo/young-handsome-physician-medical-robe-with-stethoscope_1303-17818.jpg?w=740&t=st=1720958854~exp=1720959454~hmac=666897efa6715fc1537333cdf16484745b38b6a60081d8b1ce2f4496f1b863f0);
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed; /* Ensures the background image is fixed */
-    background-position: center; /* Centers the background image */
+    background-attachment: fixed; 
+    background-position: center; 
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -26,8 +26,8 @@ img {
     height: 100px;
     top: 8px;
     margin-bottom: 10px;
-    display: block; /* Ensures images are block-level and do not overlap other content */
-    max-width: 100%; /* Prevents images from exceeding the container's width */
+    display: block; 
+    max-width: 100%; 
 }
 
 header {
@@ -52,7 +52,7 @@ footer {
     text-align: center;
     padding: 10px;
     width: 100%;
-    bottom: 0;
+    bottom: 0;  
 }
 
 h2 {
@@ -97,25 +97,7 @@ input[type="submit"], button {
     margin-top: 10px;
 }
 
-/* table {
-    width: 100%;
-    margin-top: 20px;
-    background-color: #ffffff; 
-    border-collapse: collapse; 
-}
 
-table, th, td {
-    border: 1px solid #ccc;
-}
-
-th, td {
-    padding: 15px;
-    text-align: left;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-} */
 .table-container {
     overflow-x: auto;
 }
@@ -137,13 +119,17 @@ tr:nth-child(even) {
     color: #333;
 }
 
-
-.table .btn {
+#schedule-table-body .btn{
     margin: 2px;
     width: 100%;
     font-size: 14px;
 }
 
+.table .btn {
+    margin: 2px;
+    width: 30%;
+    font-size: 14px;
+}
 
 #logout {
     background-color: #4CAF50;
@@ -166,7 +152,7 @@ tr:nth-child(even) {
 }
 
 .button-box .btn {
-    width: 200px;
+    width: 20%;
 }
 
 div.container, .form-container input, .container table, .table thead th, .form-container textarea {
@@ -185,7 +171,7 @@ div.container, .form-container input, .container table, .table thead th, .form-c
 }
 
 .button-box button {
-    width: 150px;
+    width: 100%;
 }
 
 .form-container table {

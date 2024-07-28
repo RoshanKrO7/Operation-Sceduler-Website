@@ -324,7 +324,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 /// Open the edit modal and populate it with data
 function openEditModal(docId) {
     console.log('Opening edit modal for docId:', docId);
-    document.getElementById('modal-content').style.display = 'block'; // Show the edit form container
+    document.getElementById('modal-content').style.display = 'block'; 
     const docRef = doc(db, "OperationSchedule", docId);
     getDoc(docRef).then((doc) => {
         if (doc.exists()) {

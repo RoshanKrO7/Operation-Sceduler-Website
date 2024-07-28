@@ -1,17 +1,25 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
     line-height: 1.6;
-    align-content: center;
-    align-items: center;
-    background-image:url(https://img.freepik.com/free-photo/young-handsome-physician-medical-robe-with-stethoscope_1303-17818.jpg?w=740&t=st=1720958854~exp=1720959454~hmac=666897efa6715fc1537333cdf16484745b38b6a60081d8b1ce2f4496f1b863f0);
+    background-image: url(https://img.freepik.com/free-photo/young-handsome-physician-medical-robe-with-stethoscope_1303-17818.jpg?w=740&t=st=1720958854~exp=1720959454~hmac=666897efa6715fc1537333cdf16484745b38b6a60081d8b1ce2f4496f1b863f0);
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed; 
+    background-position: center; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 img {
     position: relative;
     height: 100px;
     top: 8px;
+    margin-bottom: 10px;
+    display: block; 
+    max-width: 100%; 
 }
 
 header {
@@ -22,11 +30,12 @@ header {
 }
 
 header h1 {
-    margin: 0;
+    margin: 17px;
 }
 
 main {
-    padding: 50px;
+    padding: 20px;
+    flex: 1;
 }
 
 footer {
