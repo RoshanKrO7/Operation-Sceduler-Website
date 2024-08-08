@@ -140,6 +140,7 @@
                 opacity: 0;
             }
         }
+
     </style>
 </head>
 <body>
@@ -153,28 +154,25 @@
     </header>
     <main>
         <center>
-        <form class="form">
+        <form class="form" id="form">
             <p class="title">Register </p>
             <p class="message">Signup now  </p>
-                <div class="flex">
+            <div class="flex">
                 <label>
                     <input required name="firstname" placeholder="" type="text" class="input">
                     <span style="color: #fff;">Firstname</span>
                 </label>
-        
                 <label>
                     <input required name="lastname" placeholder="" type="text" class="input">
                     <span style="color: #fff;">Lastname</span>
                 </label>
             </div>  
-                    
             <label>
-                <input required name="email" placeholder="" type="email" class="input">
+                <input required name="email" placeholder="" type="email" class="input" id="email">
                 <span style="color: #fff;">Email</span>
             </label> 
-                
             <label>
-                <input required name="password" placeholder="" type="password" class="input">
+                <input required name="password" placeholder="" type="password" class="input" id="password">
                 <span style="color: #fff;">Password</span>
             </label>
             <label>
@@ -192,8 +190,8 @@
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-analytics.js";
-
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
+    
         // Your web app's Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyB6IagQ41Nr3QxU2hjdt1hMvXdlkjzNJxo",
@@ -205,18 +203,18 @@
             appId: "1:210565836841:web:fdb6368f1b44995bbdac38",
             measurementId: "G-C8X53NM98N"
         };
-
+    
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
         const db = getFirestore(app);
-
+        const auth = getAuth(app);
+    
         // Handle form submission
         document.addEventListener('DOMContentLoaded', () => {
-            const form = document.querySelector('form');
+            const form = document.getElementById('form');
             form.addEventListener('submit', async (event) => {
                 event.preventDefault();
-
+    
                 const formData = new FormData(form);
                 const userData = {
                     firstname: formData.get('firstname'),
@@ -225,21 +223,30 @@
                     password: formData.get('password'),
                     confirmPassword: formData.get('confirmPassword'),
                 };
-
+    
                 try {
                     // Validate if password and confirmPassword match
                     if (userData.password !== userData.confirmPassword) {
                         alert('Passwords do not match.');
                         return;
                     }
-
-                    // Save data to Firestore
-                    await addDoc(collection(db, 'Users'), userData);
-                    alert('User data saved successfully!');
+    
+                    // Create user with Firebase Auth
+                    const userCredential = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
+                    const user = userCredential.user;
+    
+                    // Save additional user data to Firestore
+                    await addDoc(collection(db, 'Users'), {
+                        uid: user.uid,
+                        firstname: userData.firstname,
+                        lastname: userData.lastname,
+                        email: userData.email,
+                    });
+                    alert('User registered successfully!');
                     form.reset(); // Clear the form fields
                 } catch (error) {
-                    console.error('Error saving user data: ', error);
-                    alert('Error saving user data.');
+                    console.error('Error during registration: ', error);
+                    alert('Error during registration: ' + error.message);
                 }
             });
         });

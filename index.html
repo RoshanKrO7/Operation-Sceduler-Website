@@ -34,6 +34,7 @@
                     </div>
                 </div>
             </div>
+            
         </center>
         <center>
             <div id="login-section" class="hidden">
@@ -46,7 +47,12 @@
                         <input type="password" id="admin-password" placeholder="Enter password" required>
                     </div>
                     <button id="admin-signin" type="submit" class="submit">Sign in</button>
+                    <p>
+                        <span id="refresh-text" class="refresh-link">Go Back</span> 
+                    </p>
                 </form>
+                
+
                 <form id="user-login-form" class="form hidden">
                     <p class="form-title">Sign in to your account (User)</p>
                     <div class="input-container">
@@ -57,6 +63,9 @@
                     </div>
                     <button id="user-signin" type="submit" class="submit">Sign in</button>
                     <p class="signin">Don't have an account? <a href="./signup.html">Signup</a> </p>
+                    <p>
+                        <span id="refresh-text2" class="refresh-link">Go Back</span> 
+                    </p>
                 </form>
                 
             </div>
@@ -64,10 +73,28 @@
     </main>
     <footer>
         <p>&copy; 2024 Hospital Operation Scheduler</p>
-    </footer>2
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script>
+    </footer>
+    <script> function selectRole(role) {
+        console.log('Role selected:', role);
+        document.getElementById('role-section').classList.add('hidden');
+        if (role === 'admin') {
+            document.getElementById('admin-login-form').classList.remove('hidden');
+        } else if (role === 'user') {
+            document.getElementById('user-login-form').classList.remove('hidden');
+        }
+        document.getElementById('login-section').classList.remove('hidden');
+        document.getElementById('refresh-text').addEventListener('click', function() {
+            location.reload(); // Reloads the current page
+        });
+        document.getElementById('refresh-text2').addEventListener('click', function() {
+            location.reload(); // Reloads the current page
+        });
+    }</script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
+
         // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyB6IagQ41Nr3QxU2hjdt1hMvXdlkjzNJxo",
@@ -80,43 +107,34 @@
             measurementId: "G-C8X53NM98N"
         };
 
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore(app);
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
 
-        function selectRole(role) {
-            console.log('Role selected:', role);
-            document.getElementById('role-section').classList.add('hidden');
-            if (role === 'admin') {
-                document.getElementById('admin-login-form').classList.remove('hidden');
-            } else if (role === 'user') {
-                document.getElementById('user-login-form').classList.remove('hidden');
-            }
-            document.getElementById('login-section').classList.remove('hidden');
-        }
+       
 
         document.getElementById('admin-login-form').addEventListener('submit', async function(event) {
             event.preventDefault();
             const email = document.getElementById('admin-email').value;
             const password = document.getElementById('admin-password').value;
 
-            console.log('Admin login attempt:', email);
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
 
-            const usersCollection = db.collection('Admin');
-            const snapshot = await usersCollection.get();
-            let authenticated = false;
+                // Check if user is an admin
+                const q = query(collection(db, 'Admin'), where('Id', '==', email));
+                const querySnapshot = await getDocs(q);
 
-            snapshot.forEach((doc) => {
-                const data = doc.data();
-                if (data.Id === email && data.password === password) {
-                    authenticated = true;
+                if (!querySnapshot.empty) {
+                    console.log('Admin authenticated');
+                    window.location.href = 'admin.html';
+                } else {
+                    console.log('User is not an admin');
+                    alert('User is not an admin');
                 }
-            });
-
-            if (authenticated) {
-                console.log('Admin authenticated');
-                window.location.href = 'admin.html';
-            } else {
-                console.log('Invalid email or password');
+            } catch (error) {
+                console.log('Error during admin login:', error);
                 alert('Invalid email or password');
             }
         });
@@ -126,24 +144,23 @@
             const email = document.getElementById('user-email').value;
             const password = document.getElementById('user-password').value;
 
-            console.log('User login attempt:', email);
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
 
-            const usersCollection = db.collection('Users');
-            const snapshot = await usersCollection.get();
-            let authenticated = false;
+                // Check if user is a regular user
+                const q = query(collection(db, 'Users'), where('email', '==', email));
+                const querySnapshot = await getDocs(q);
 
-            snapshot.forEach((doc) => {
-                const data = doc.data();
-                if (data.email === email && data.password === password) {
-                    authenticated = true;
+                if (!querySnapshot.empty) {
+                    console.log('User authenticated');
+                    window.location.href = 'user.html';
+                } else {
+                    console.log('User is not found in Users collection');
+                    alert('User is not found in Users collection');
                 }
-            });
-
-            if (authenticated) {
-                console.log('User authenticated');
-                window.location.href = 'user.html';
-            } else {
-                console.log('Invalid email or password');
+            } catch (error) {
+                console.log('Error during user login:', error);
                 alert('Invalid email or password');
             }
         });

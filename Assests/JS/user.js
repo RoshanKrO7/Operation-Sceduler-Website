@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
-
+import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyB6IagQ41Nr3QxU2hjdt1hMvXdlkjzNJxo",
@@ -16,6 +16,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
 // Function to fetch and display doctors
 async function fetchDoctors() {
@@ -73,4 +74,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
      fetchAndDisplaySchedules();
+});
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        // User is not signed in, redirect to login page
+        window.location.href = 'index.html';
+    }
+});
+
+// Logout button event listener
+document.getElementById('logout').addEventListener('click', () => {
+    signOut(auth).then(() => {
+        alert('Successfully logged out!');
+        window.location.href = 'index.html'; // Redirect to login page after logout
+        window.history.pushState(null, null, 'index.html'); // Push login page to history stack
+        window.history.go(0); // Reload to clear history
+    }).catch((error) => {
+        console.error('Logout error: ', error);
+    });
 });

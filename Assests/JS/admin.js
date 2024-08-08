@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
 import { getFirestore, collection, getDocs, addDoc, doc, updateDoc, deleteDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
-
+import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyB6IagQ41Nr3QxU2hjdt1hMvXdlkjzNJxo",
@@ -16,7 +17,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
+const auth = getAuth(app);
+const storage = getStorage(app);
 // Fetch doctors from Firestore and populate the table
 function fetchDoctors() {
     const tableBody = document.getElementById("doctor-table-body");
@@ -214,35 +216,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 //Operation schedule
-const surgeryForm = document.querySelector('#surgery-form');
-    surgeryForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
+document.querySelector('#surgery-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-        const formData = new FormData(surgeryForm);
-        const docData = {
-            doctorName: formData.get('doctor-name'),
-            patientName: formData.get('patient-name'),
-            date: formData.get('date') ,
-            time: formData.get('time') ,
-            otId: formData.get('ot-id'),
-            anaesthesiaType: formData.get('anaesthesia') ,
-            anaesthesiologist: formData.get('anaesthesiologist') ,
-            medic: formData.get('medic') ,
-            nurses: formData.get('nurses') ,
-            remarks: formData.get('remarks') ,
-            uniqueRequirements: formData.get('unique-requirements') 
-        };        
-            // Add new patient
-            try {
-                await addDoc(collection(db, 'OperationSchedule'), docData);
-                alert('Scheduled operation successfully!');
-                surgeryForm.reset();
-            } catch (error) {
-                console.error('Error adding patient: ', error);
-                alert('Error adding patient.');
-            }
+    const formData = new FormData(event.target);
+    const file = formData.get('surgical-report');
+
+    let reportURL = ''; // Initialize reportURL here
+
+    if (file) {
+        const storageRef = ref(storage, file.name); 
+        try {
+            const snapshot = await uploadBytes(storageRef, file);
+            reportURL = await getDownloadURL(snapshot.ref);
+            console.log('File uploaded successfully, URL:', reportURL);
+        } catch (error) {
+            console.error('Error uploading file:', error);
         }
-    );
+    }
+
+    const docData = {
+        doctorName: formData.get('doctor-name'),
+        patientName: formData.get('patient-name'),
+        date: formData.get('date'),
+        time: formData.get('time'),
+        otId: formData.get('ot-id'),
+        anaesthesiaType: formData.get('anaesthesia'),
+        anaesthesiologist: formData.get('anaesthesiologist'),
+        medic: formData.get('medic'),
+        nurses: formData.get('nurses'),
+        remarks: formData.get('remarks'),
+        uniqueRequirements: formData.get('unique-requirements'),
+        reportURL: reportURL // Assign reportURL after it's retrieved
+    };
+
+    try {
+        await addDoc(collection(db, 'OperationSchedule'), docData);
+        alert('Scheduled operation successfully!');
+        event.target.reset();
+    } catch (error) {
+        console.error('Error adding operation schedule:', error);
+        alert('Error adding operation schedule.');
+    }
+});
+
+
 //Fetch and display OT schedules
 document.addEventListener('DOMContentLoaded', async () => {
     const scheduleTableBody = document.querySelector('#schedule-table-body');
@@ -266,6 +284,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <td>${data.anaesthesiologist}</td>
                     <td>${data.medic}</td>
                     <td>${data.nurses}</td>
+                    <td><a href="${data.reportURL}" target="_blank" >View Report</a></td> 
                     <td>${data.remarks}</td>
                     <td>${data.uniqueRequirements}</td>
                     <td>
@@ -387,4 +406,23 @@ const editsurgeryForm = document.querySelector('#edit-schedule-form');
     // Initial fetch
     fetchAndDisplaySchedules();
 });
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        // User is not signed in, redirect to login page
+        window.location.href = 'index.html';
+    }
+});
+
+// Logout button event listener
+document.getElementById('logout').addEventListener('click', () => {
+    signOut(auth).then(() => {
+        alert('Successfully logged out!');
+        window.location.href = 'index.html'; // Redirect to login page after logout
+        window.history.pushState(null, null, 'index.html'); // Push login page to history stack
+        window.history.go(0); // Reload to clear history
+    }).catch((error) => {
+        console.error('Logout error: ', error);
+    });
+});
+
 

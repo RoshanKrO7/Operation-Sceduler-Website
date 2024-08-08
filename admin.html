@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-2"><img src="./Assests/Images/appolo.jpg" alt="Appolo hospital"></div>
                 <div class="col-8"><h1>Admin Dashboard</h1></div>
-                <div class="col-2"><a href="index.html"><button id="logout" class="logout">Logout</button></a></div>
+                <div class="col-2"><button id="logout" class="logout">Logout</button></div>
             </div>
         </div>  
     </header>
@@ -160,7 +160,7 @@
                     </div>
                     <div class="col-sm-4">
                         <label for="reports" class="form-label">Surgical Reports</label>
-                        <input type="file" class="form-control" id="reports" name="reports" multiple>
+                       <input type="file" id="surgical-report" name="surgical-report" accept="application/pdf">
                     </div></div>
                     <div class="mb-3  row">
                     <div class="col-sm-6">
@@ -175,7 +175,7 @@
                 </form>
             </section>
         </div>
-        <div class="container card p-4 my-4" id="manage-doctors" ng-show="selectedForm === 'OT'">
+        <div class="container card p-4 my-4" id="operation-schedule" ng-show="selectedForm === 'OT'">
             <div class="modal-content hidden" id="modal-content" style="display: none;">
                 <div class="modal-header">
                 <h5 class="modal-title" id="editModalLabel">Edit Surgery Schedule</h5></div>
@@ -261,7 +261,7 @@
                             <th>Anaesthesiologist</th>
                             <th>Medic</th>
                             <th>Nurses</th>
-                            <!-- <th>Reports</th> -->
+                            <th>Reports</th>
                             <th>Remarks</th>
                             <th>Unique Requirements</th>
                             <th>Actions</th>
@@ -274,8 +274,6 @@
             </section>
         </div>
       
- 
-
     </main>
     <footer>
         <p>&copy; 2024 Hospital Operation Scheduler</p>
@@ -291,15 +289,7 @@
             $scope.selectedForm = form;
         };
     });
-document.getElementById('logout').addEventListener('click', function() {
-    auth.signOut().then(() => {
-        window.location.href = 'index.html';
-    }).catch((error) => {
-        console.error('Error signing out: ', error);
-    });
-});
 </script>
 <script type="module" src="./Assests/JS/admin.js"></script>
 </body>
 </html>
- 
